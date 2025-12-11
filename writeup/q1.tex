@@ -29,21 +29,55 @@
         you simply take the run with the lowest training loss for each compute budget as the minimum.
         \begin{subparts}
 
-            \subpart Show your extrapolated compute-optimal model size, together with the ⟨Ci,Nopt(Ci)⟩ points you
+            \subpart Show your extrapolated compute-optimal model size, together with the $\langle C_i,N_{opt}(C_i) \rangle$ points you
             obtained. What is your predicted optimal model size for a budget of $10^{23}$ FLOPs? What about for $10^{24}$ FLOPs?
 
             \textbf{Deliverable}: A plot showing your scaling law for model size by compute budget, showing the
             data points used to fit the scaling law and extrapolating up to at least $10^{24}$ FLOPs. Then, a
             one-sentence response with your predicted optimal model size.
-              
-                
-            \subpart Show your extrapolated compute-optimal dataset size, together with the ⟨Ci,Dopt(Ci)⟩ data
+
+            \ifans{
+            My predicted optimal model size for a budget of $10^{23}$ FLOPs is 39,792,556,129, and 85,491,178,611 for $10^{24}$ FLOPs.
+            
+            I have obtained the following formula using scipy.optimize.curve\_fit.
+                \begin{align*}
+                N &= a \cdot C^b + c  &&\text{a=1.350e+03, b=3.253e-01, c=-1.192e+09} \\
+                  &= 1350 \cdot C^{0.3253} - 1.192 \cdot 10^9
+                \end{align*}
+        
+            \begin{figure}[H]  
+                \centering  
+                \includegraphics[width=0.5\textwidth]{C_N.pdf}  % 核心命令
+                \caption{C-N figure}  % 图片标题（自动编号）
+                \label{fig:c-n}  % 标签，用于后文引用（如\ref{fig:sin_plot}）
+            \end{figure}
+            }
+                   
+            \subpart Show your extrapolated compute-optimal dataset size, together with the $\langle C_i,D_{opt}(C_i) \rangle$ data
             points from the training runs. What is your predicted optimal dataset size for budgets of $10^{23}$
             and $10^{24}$ FLOPs?
             \textbf{Deliverable}: A plot showing your scaling law for dataset size by compute budget, showing the
             data points used to fit the scaling law and extrapolating up to at least $10^{24}$ FLOPs. Then, a
             one-sentence response with your predicted optimal dataset size.
-                \end{subparts}
+                
+            \ifans{
+            My predicted optimal model size for a budget of $10^{23}$ FLOPs is  364,796,370,806, and 1,525,768,382,027 for $10^{24}$ FLOPs.
+            
+            I have obtained the following formula using scipy.optimize.curve\_fit.
+                \begin{align*}
+                D &= a \cdot C^b + c  &&\text{a=1.802e-03, b=6.220e-01, c=5.948e+08} \\
+                  &= 0.001802 \cdot C^{0.6220} + 5.948 \cdot 10^8
+                \end{align*}
+        
+            \begin{figure}[H]  
+                \centering  
+                \includegraphics[width=0.5\textwidth]{C_D.pdf}  % 核心命令
+                \caption{C-D figure}  % 图片标题（自动编号）
+                \label{fig:c-d}  % 标签，用于后文引用（如\ref{fig:sin_plot}）
+            \end{figure}
+            }
+
+            \end{subparts}
         
         
             
